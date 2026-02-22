@@ -19,6 +19,7 @@ export default async function AboutSection() {
               src="/images/2.jpg"
               alt="Marine Equipment Factory and Logistics"
               fill
+              priority
               className="object-cover transition-transform duration-500 hover:scale-105"
             />
             // 增加一个半透明遮罩层，让图片更有质感
