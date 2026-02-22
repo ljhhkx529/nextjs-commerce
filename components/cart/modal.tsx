@@ -177,7 +177,9 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                     </div>
                   </div>
                   <a
-                    href={`/api/epusdt/checkout?cartId=${cart.id}&amount=${cart.cost.totalAmount.amount}`}
+                    //href={`/api/epusdt/checkout?cartId=${cart.id}&amount=${cart.cost.totalAmount.amount}`}
+                    href={cart.checkoutUrl}
+
                     className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
                   >
                     Proceed to Checkout

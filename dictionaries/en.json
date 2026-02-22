@@ -1,0 +1,95 @@
+{
+  "team": {
+    "title": "Our Team"
+  },
+  "teamMembers": [
+    {
+      "id": 1,
+      "name": "Artem",
+      "role": "Sales Manager, Russia",
+      "imageUrl": "https://static.tildacdn.com/tild3934-3065-4237-b266-353930376435/af6fbe35-e127-4019-9.png"
+    },
+    {
+      "id": 2,
+      "name": "Oleg",
+      "role": "Foreign Trade Manager, Shenzhen",
+      "imageUrl": "/images/1.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Maria Oshkina",
+      "role": "Logistics Manager, Vladivostok",
+      "imageUrl": "https://optim.tildacdn.com/tild6236-6330-4437-a633-353830353662/-/cover/346x346/center/center/-/format/webp/8dc535e3-8002-44a9-b.jpg"
+    }
+  ],
+  "about": {
+    "eyebrow": "About Us",
+    "title": "Powering Your Maritime Journey with Reliable Marine Solutions.",
+    "description": "Located in Guangdong, the heart of China's premium manufacturing hub, we specialize in exporting high-performance marine equipment and outboard motors. We focus on delivering top-tier mechanical products that perform exceptionally in the most demanding aquatic environments.",
+    "advantages": [
+      {
+        "title": "Direct Supply from Manufacturer",
+        "description": "Based in Southern China, ensuring competitive pricing and product authenticity."
+      },
+      {
+        "title": "Efficient Communication",
+        "description": "Fluent in Russian and English for precise technical coordination."
+      },
+      {
+        "title": "Turnkey Export Services",
+        "description": "Full support from factory to destination port, including logistics and customs clearance."
+      }
+    ],
+    "quote": "Built on discipline, driven by excellence. We are your reliable partner committed to mutual growth."
+  },
+  "businesstitle": {
+    "title": "Our Geography",
+    "description": "From direct supply in China to reliable logistics and support in Russia — we are always by your side."
+  },
+  "achievementstitle": {
+    "title": "Our Achievements & Real Cases",
+    "description": "Client trust is our greatest value. Real transactions, real feedback."
+  },
+  "locations": [
+    {
+      "id": "shenzhen",
+      "city": "Shenzhen, China",
+      "title": "Headquarters & Procurement",
+      "desc": "The heart of global manufacturing. Here we strictly control quality before shipment.",
+      "query": "Shenzhen, Guangdong, China",
+      "icon": "🏭"
+    },
+    {
+      "id": "vladivostok",
+      "city": "Vladivostok, Russia",
+      "title": "Logistics Hub",
+      "desc": "The main gateway for our goods. Ensuring fast customs clearance.",
+      "query": "Vladivostok, Russia",
+      "icon": "🚢"
+    },
+    {
+      "id": "russia",
+      "city": "Russia",
+      "title": "Sales Department",
+      "desc": "Always available in your time zone for fast and efficient problem solving.",
+      "query": "Moscow, Russia",
+      "icon": "🤝"
+    }
+  ],
+  "businessHighlights": {
+    "globalSales": {
+      "title": "Global Sales Network",
+      "description": "We operate worldwide. Wherever you are, we ensure reliable and fast delivery of our equipment."
+    },
+    "paymentMethods": {
+      "title": "Convenient Payment Methods",
+      "description": "We offer flexible settlement options for your business:",
+      "methods": {
+        "label1": "💵 Cash",
+        "label2": "💳 Bank Cards",
+        "label3": "🪙 USDT",
+        "label4": "₽ Rubles"
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "team": {
+    "title": "我们的团队"
+  },
+  "teamMembers": [
+    {
+      "id": 1,
+      "name": "Артем",
+      "role": "销售经理，俄罗斯",
+      "imageUrl": "https://static.tildacdn.com/tild3934-3065-4237-b266-353930376435/af6fbe35-e127-4019-9.png"
+    },
+    {
+      "id": 2,
+      "name": "Олег",
+      "role": "外贸经理，深圳",
+      "imageUrl": "/images/1.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Мария Ошкина",
+      "role": "物流经理，符拉迪沃斯托克",
+      "imageUrl": "https://optim.tildacdn.com/tild6236-6330-4437-a633-353830353662/-/cover/346x346/center/center/-/format/webp/8dc535e3-8002-44a9-b.jpg"
+    }
+  ],
+  "about": {
+    "eyebrow": "关于公司",
+    "title": "以可靠的海事解决方案，助力您的航海事业。",
+    "description": "我们位于广东——中国高端制造核心区域，专注于出口高性能船用设备和舷外机。我们致力于提供在严苛水域环境中表现卓越的高品质机械产品。",
+    "advantages": [
+      {
+        "title": "厂家直供",
+        "description": "立足中国南方制造基地，确保具有竞争力的价格与正品保障。"
+      },
+      {
+        "title": "高效沟通",
+        "description": "精通俄语和英语，实现精准的技术对接。"
+      },
+      {
+        "title": "一站式出口服务",
+        "description": "从工厂到目的港，全流程负责物流与清关。"
+      }
+    ],
+    "quote": "以纪律为基础，以卓越为驱动。我们是您值得信赖、共同成长的合作伙伴。"
+  },
+  "businesstitle": {
+    "title": "我们的业务版图",
+    "description": "从中国直供到俄罗斯本地物流与支持，我们始终与您同行。"
+  },
+  "achievementstitle": {
+    "title": "我们的成果与真实案例",
+    "description": "客户的信任是我们最大的价值。真实交易，真实反馈。"
+  },
+  "locations": [
+    {
+      "id": "shenzhen",
+      "city": "深圳，中国",
+      "title": "总部与采购中心",
+      "desc": "世界制造中心。在这里我们在发货前严格把控质量。",
+      "query": "Shenzhen, Guangdong, China",
+      "icon": "🏭"
+    },
+    {
+      "id": "vladivostok",
+      "city": "符拉迪沃斯托克，俄罗斯",
+      "title": "物流枢纽",
+      "desc": "我们货物进入俄罗斯的主要门户，保障快速清关。",
+      "query": "Vladivostok, Russia",
+      "icon": "🚢"
+    },
+    {
+      "id": "russia",
+      "city": "俄罗斯",
+      "title": "销售支持",
+      "desc": "在您的时区随时保持联系，快速解决问题。",
+      "query": "Moscow, Russia",
+      "icon": "🤝"
+    }
+  ],
+  "businessHighlights": {
+    "globalSales": {
+      "title": "全球销售网络",
+      "description": "我们的业务遍布全球。无论您身在何处，我们都能为您提供可靠、快速的设备交付服务。"
+    },
+    "paymentMethods": {
+      "title": "便捷的支付方式",
+      "description": "我们为您的业务提供灵活的结算方案：",
+      "methods": {
+        "label1": "💵 现金",
+        "label2": "💳 银行卡",
+        "label3": "🪙 USDT",
+        "label4": "₽ 卢布"
+      }
+    }
+  }
+}

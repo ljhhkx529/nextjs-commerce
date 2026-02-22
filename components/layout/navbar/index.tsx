@@ -1,3 +1,4 @@
+import LanguageSwitcher from 'components/LanguageSwitcher';
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import LogoSquare from 'components/logo-square';
@@ -47,11 +48,18 @@ export default async function Navbar() {
             <Search />
           </Suspense>
         </div>
-        <div className="flex justify-end md:w-1/3">
-          <Suspense fallback={<OpenCart />}>
-            <Cart />
-          </Suspense>
-        </div>
+          <div className="flex justify-end md:w-1/3">
+            
+            {/* 🔥 给语言和购物车单独建一个“包厢”，在这里强制拉开间距！ */}
+            <div className="flex items-center gap-4">
+              <Suspense>
+                <LanguageSwitcher />
+              </Suspense>
+              <Suspense fallback={<OpenCart />}>
+                <Cart />
+              </Suspense>
+            </div>
+          </div>
       </div>
     </nav>
   );
