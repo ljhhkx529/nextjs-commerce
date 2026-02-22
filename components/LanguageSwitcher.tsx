@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
   useEffect(() => {
     const match = document.cookie.match(/(^| )NEXT_LOCALE=([^;]+)/);
     if (match) {
-      setCurrentLang(match[2]);
+      setCurrentLang(match[2] || 'ru');
     }
   }, []);
 
