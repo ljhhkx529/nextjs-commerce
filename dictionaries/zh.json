@@ -91,5 +91,10 @@
         "label4": "₽ 卢布"
       }
     }
+  },
+      "ContactUS": {
+      "title": "联系我们",
+      "description": "我们会在1个小时内回复"
+    
   }
 }
