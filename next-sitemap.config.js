@@ -1,26 +1,18 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://olegrussian.store',
-  generateRobotsTxt: true, 
+  generateRobotsTxt: true,
+  
+  // 🚨 核心修复：关闭索引地图生成 🚨
+  // 这样它就会直接把所有链接（/t15, /search 等）写在 sitemap.xml 里
+  generateIndexSitemap: false, 
+  
+  // 确保排除掉重复或无意义的路径
+  exclude: ['/server-sitemap.xml'], 
+  
   robotsTxtOptions: {
-    policies: [
-      {
-        userAgent: '*', // 对所有爬虫生效
-        allow: '/',     // 允许抓取首页和公共页面
-        disallow: [
-          '/api/*',     // 禁止抓取后端接口（安全考虑）
-          '/admin/*',   // 禁止抓取管理后台
-          '/private/*', // 禁止抓取私密文件夹
-          '/*.json$',   // 禁止抓取配置文件
-        ],
-      },
-      {
-        userAgent: 'GPTBot', // 针对 AI 爬虫（如果你不想让你的内容被拿去训练）
-        disallow: ['/'],     // 可以选择禁止
-      },
-    ],
     additionalSitemaps: [
-      'https://olegrussian.store/sitemap.xml',
+      // 既然关掉了索引，这里就不需要再额外添加自己了
     ],
   },
 }

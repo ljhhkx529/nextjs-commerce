@@ -13,14 +13,12 @@ COPY package.json pnpm-lock.yaml ./
 # 5. 安装依赖
 RUN pnpm install --frozen-lockfile
 
-# 6. 复制所有剩下的源代码
+# 6. 复制所有源代码
 COPY . .
 
-# 7. 打包构建
+# 8. 执行打包 (这会触发 postbuild 并生成正确的 sitemap)
 RUN pnpm build
 
-# 8. 暴露 3000 端口
+# 9. 暴露端口并启动
 EXPOSE 3000
-
-# 9. 启动项目
 CMD ["pnpm", "start"]
