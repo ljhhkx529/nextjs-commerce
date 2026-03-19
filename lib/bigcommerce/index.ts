@@ -89,7 +89,7 @@ export async function bigCommerceFetch<T>({
   query,
   variables,
   headers,
-  cache = 'force-cache'
+  //cache = 'force-cache'
 }: {
   query: string;
   variables?: ExtractVariables<T>;
@@ -109,7 +109,6 @@ export async function bigCommerceFetch<T>({
         ...(query && { query }),
         ...(variables && { variables })
       }),
-      cache
     });
 
     const body = await result.json();

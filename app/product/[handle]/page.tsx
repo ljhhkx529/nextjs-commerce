@@ -12,7 +12,7 @@ import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import Link from 'next/link';
 
 export const runtime = 'edge';
-export const revalidate = 30;
+export const dynamic = 'force-dynamic';
 export async function generateMetadata({
   params
 }: {
