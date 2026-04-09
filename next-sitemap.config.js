@@ -8,7 +8,9 @@ module.exports = {
   generateIndexSitemap: false, 
   
   // 确保排除掉重复或无意义的路径
-  exclude: ['/server-sitemap.xml'], 
+  exclude: ['/sitemap.xml',
+            '/search/*',
+  ], 
   
   robotsTxtOptions: {
     additionalSitemaps: [

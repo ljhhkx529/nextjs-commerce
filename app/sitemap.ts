@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       (products) =>
         products.map((product) => ({
           // ⚠️ 根据你路由结构决定
-          url: `${baseUrl}/product${product.handle}`,
+          url: `${baseUrl}${product.handle}`,
           lastModified: new Date(product.updatedAt),
           changeFrequency: 'weekly',
           priority: 0.8
@@ -97,20 +97,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
 
     // 并发执行所有请求
+    // ✅ 最终合并：并发拉取所有数据 + 注入博客 + 排除搜索页面
     const fetchedRoutes = (
       await Promise.all([
         collectionsPromise, 
         productsPromise, 
         pagesPromise, 
-        blogPromise // 注入博客的 Promise
+        blogPromise // 1. 确保博客文章包含在内
       ])
-    ).flat();
+    )
+      .flat()
+      .filter((route) => {
+        const url = route.url;
+
+        // 2. 保留服务器上的修复逻辑：排除 search 相关的所有路径
+        if (url.includes('/search')) return false;
+
+        return true;
+      });
 
     return [...staticRoutes, ...fetchedRoutes];
-  } catch (error) {
-    console.error('❌ Sitemap生成失败:', error);
-
-    // 👉 出错至少保证首页和博客首页还能被收录
-    return staticRoutes;
-  }
 }
