@@ -17,13 +17,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as const,
       priority: 1
     },
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as const,
       priority: 0.8
     }
   ];
@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         collections.map((collection) => ({
           url: `${baseUrl}${collection.path}`,
           lastModified: new Date(collection.updatedAt),
-          changeFrequency: 'weekly',
+          changeFrequency: 'weekly' as const,
           priority: 0.9
         }))
     );
@@ -45,9 +45,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       (products) =>
         products.map((product) => ({
           // ⚠️ 根据你路由结构决定
-          url: `${baseUrl}${product.handle}`,
+          url: `${baseUrl}/product${product.handle}`,
           lastModified: new Date(product.updatedAt),
-          changeFrequency: 'weekly',
+          changeFrequency: 'weekly' as const,
           priority: 0.8
         }))
     );
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       pages.map((page) => ({
         url: `${baseUrl}/${page.handle}`,
         lastModified: new Date(page.updatedAt),
-        changeFrequency: 'monthly',
+        changeFrequency: 'monthly' as const,
         priority: 0.7
       }))
     );
@@ -87,7 +87,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${baseUrl}/blog/${file.name.replace('.md', '')}`,
             // GitHub API 获取的 contents 列表不含最后修改时间，默认用当前时间
             lastModified: new Date(),
-            changeFrequency: 'weekly',
+            changeFrequency: 'weekly' as const,
             priority: 0.6
           }));
       })
@@ -97,24 +97,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
 
     // 并发执行所有请求
-    // ✅ 最终合并：并发拉取所有数据 + 注入博客 + 排除搜索页面
     const fetchedRoutes = (
       await Promise.all([
         collectionsPromise, 
         productsPromise, 
         pagesPromise, 
-        blogPromise // 1. 确保博客文章包含在内
+        blogPromise // 注入博客的 Promise
       ])
-    )
-      .flat()
-      .filter((route) => {
-        const url = route.url;
-
-        // 2. 保留服务器上的修复逻辑：排除 search 相关的所有路径
-        if (url.includes('/search')) return false;
-
-        return true;
-      });
+    ).flat();
 
     return [...staticRoutes, ...fetchedRoutes];
+  } catch (error) {
+    console.error('❌ Sitemap生成失败:', error);
+
+    // 👉 出错至少保证首页和博客首页还能被收录
+    return staticRoutes;
+  }
 }
