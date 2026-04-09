@@ -12,13 +12,19 @@ const baseUrl =
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   validateEnvironmentVariables();
 
-  // ✅ 首页
+  // ✅ 首页与博客列表页作为固定静态路由
   const staticRoutes: SitemapItem[] = [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8
     }
   ];
 
@@ -56,15 +62,55 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
     );
 
+    // ✅ 博客文章 (新增：从 GitHub 动态拉取 Markdown 列表)
+    const blogPromise: Promise<SitemapItem[]> = fetch(
+      // ⚠️ 记得把这里的 你的GitHub名 和 你的仓库名 替换掉！
+      `https://api.github.com/repos/ljhhkx529/Blog/contents/posts`,
+      {
+        headers: {
+          Authorization: `token ${process.env.GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json'
+        },
+        // 缓存1小时，减轻 GitHub API 请求压力
+        next: { revalidate: 3600 } 
+      }
+    )
+      .then((res) => {
+        if (!res.ok) return [];
+        return res.json();
+      })
+      .then((files) => {
+        if (!Array.isArray(files)) return [];
+        return files
+          .filter((file: any) => file.name.endsWith('.md'))
+          .map((file: any) => ({
+            url: `${baseUrl}/blog/${file.name.replace('.md', '')}`,
+            // GitHub API 获取的 contents 列表不含最后修改时间，默认用当前时间
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.6
+          }));
+      })
+      .catch((error) => {
+        console.error('⚠️ GitHub博客Sitemap拉取失败:', error);
+        return []; // 容错处理：即使博客拉取失败，也不影响电商数据的生成
+      });
+
+    // 并发执行所有请求
     const fetchedRoutes = (
-      await Promise.all([collectionsPromise, productsPromise, pagesPromise])
+      await Promise.all([
+        collectionsPromise, 
+        productsPromise, 
+        pagesPromise, 
+        blogPromise // 注入博客的 Promise
+      ])
     ).flat();
 
     return [...staticRoutes, ...fetchedRoutes];
   } catch (error) {
     console.error('❌ Sitemap生成失败:', error);
 
-    // 👉 出错至少保证首页还能被收录
+    // 👉 出错至少保证首页和博客首页还能被收录
     return staticRoutes;
   }
 }
