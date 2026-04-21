@@ -24,9 +24,6 @@ export default async function Navbar() {
         <div className="flex w-full md:w-1/3">
           <Link href="/" className="p-[10px] flex items-center justify-start mr-2 lg:mr-6">
             <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase hidden lg:block">
-              {SITE_NAME}
-            </div>
           </Link>
           {menu.length ? (
             <ul className="hidden gap-6 text-sm md:flex md:items-center">
@@ -40,6 +37,12 @@ export default async function Navbar() {
                   </Link>
                 </li>
               ))}
+              <Link
+              href="/blog"
+              className="text-neutral-500 whitespace-nowrap underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
+            >
+              Blog
+            </Link>
             </ul>
           ) : null}
         </div>

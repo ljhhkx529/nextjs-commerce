@@ -16,6 +16,11 @@ export const metadata = {
     default: SITE_NAME!,
     template: `%s | ${SITE_NAME}`
   },
+  description: 'Cheaper and safer marine equipment, delivered worldwide.',
+  // 这行也是控制 Google 显示名字的关键
+  openGraph: {
+    siteName: SITE_NAME!
+  },
   robots: {
     follow: true,
     index: true
@@ -60,6 +65,18 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           data-key="aewmjkaynpCAVDKd5Mtq3A" 
           strategy="afterInteractive" // 性能优化：在页面交互后再加载
         />
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "China Outboards Store",
+              "url": "https://olegrussian.store"
+            })
+          }}
+        />
+
         <Navbar />
         <Suspense>
           <main>{children}</main>
